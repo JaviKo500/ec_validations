@@ -4,7 +4,6 @@ version: 0.0.1
 homepage: https://github.com/JaviKo500
 repository: https://github.com/JaviKo500/ec_validations
 issue_tracker: https://github.com/JaviKo500/ec_validations/issues
-publish_to: '@javiko500'
 
 environment:
   sdk: ^3.7.0
