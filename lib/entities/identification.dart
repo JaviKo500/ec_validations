@@ -1,3 +1,4 @@
+/// Types of Ecuadorian identification documents.
 enum TypeIdentification {
   dni,
   ruc,
@@ -6,6 +7,7 @@ enum TypeIdentification {
   rucPublicSociety,
 }
 
+/// Result of an identification validation operation.
 class IdentificationResult {
   final bool isValid;
   final String? errorMessage;
@@ -18,6 +20,7 @@ class IdentificationResult {
   });
 }
 
+/// Error codes for identification validation failures.
 enum ErrorCode {
   invalidIdentification,
   invalidThirdDigit,
@@ -30,6 +33,7 @@ enum ErrorCode {
   invalidCheckDigit,
 }
 
+/// Rule for validation with pattern matching.
 class ValidationRule {
   final String pattern;
   final String errorMessage;
