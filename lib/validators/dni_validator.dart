@@ -13,8 +13,14 @@ class DniValidator {
     try {
       initValidate(identification, TypeIdentification.dni);
       validateCodeProvince(identification.substring(0, 2));
-      validateThirdDigit(identification.substring(2, 3), TypeIdentification.dni);
-      algorithm10(identification.substring(0, 9), identification.substring(9, 10));
+      validateThirdDigit(
+        identification.substring(2, 3),
+        TypeIdentification.dni,
+      );
+      algorithm10(
+        identification.substring(0, 9),
+        identification.substring(9, 10),
+      );
       return IdentificationResult(
         isValid: true,
         errorMessage: null,
@@ -26,7 +32,7 @@ class DniValidator {
           isValid: false,
           errorMessage: e.message,
           typeCodeError: e.code,
-        );  
+        );
       }
       return IdentificationResult(
         isValid: false,
