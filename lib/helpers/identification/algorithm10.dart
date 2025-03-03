@@ -1,6 +1,16 @@
 import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 
+/// Validates a number using the "modulo 10" algorithm, commonly used for Ecuadorian national ID numbers.
+///
+/// [firstDigits] The first 9 digits of the identification number.
+/// [verificationDigitString] The verification digit to validate.
+///
+/// Returns true if the verification digit is valid.
+/// 
+/// Throws an [IdentificationException] if the verification digit is invalid or if any part
+/// of the identification is not a number.
+
 bool algorithm10 ( String firstDigits, String verificationDigitString ) {
   final verificationDigit = int.tryParse(verificationDigitString);
   if (verificationDigit == null) {

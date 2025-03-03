@@ -1,6 +1,14 @@
 import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 
+/// Validates a numbers used for Ecuadorian RUC or DNI numbers.
+///
+/// [identification] The identification number to validate.
+/// [typeIdentification] The type of identification being validated.
+///
+/// Throws an [IdentificationException] if the verification digit is invalid, the identification
+/// type is not supported, or if any part of the identification is not a number.
+
 void initValidate( String identification, TypeIdentification typeIdentification ) {
   if ( identification.isEmpty || identification.trim().isEmpty ) {
     throw IdentificationException( 

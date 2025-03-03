@@ -1,6 +1,16 @@
 import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 
+/// Validate third digit of identification number.
+///
+/// [thirdDigit] The identification.substring(2, 3) digits of the identification number.
+/// [typeIdentification] The type of identification being validated.
+/// 
+/// Throws an [IdentificationException] if the verification digit is invalid or 
+/// thirdDigit is less than 0 or greater than 5 for DNI and RUC Person Natural.
+/// thirdDigit is different than 9 for RUC Society Private 
+/// thirdDigit is different than 6 for RUC Public Society.
+
 void validateThirdDigit ( String thirdDigit, TypeIdentification typeIdentification ) {
   final thirdDigitInt = int.tryParse(thirdDigit);
   if ( thirdDigitInt == null ) {
