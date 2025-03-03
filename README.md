@@ -7,7 +7,7 @@ A library for validating Ecuadorian identification documents (ID card and RUC)."
 
 #### iOS, Android, Linux, Mac, Web, Windows ready
 
-![ec_validator demo ](https://github.com/JaviKo500/ec_validations/blob/main/screenshots/validator.png 'Ec_validator')
+![ec_validator demo ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/validator.png 'Ec_validator')
 
 ## Documentation
 
@@ -73,11 +73,11 @@ void main() {
 }
 ```
 #### Demo form valid DNI
-![ec_validator form_dni ](https://github.com/JaviKo500/ec_validations/blob/main/screenshots/valid_dni.png 'Ec_validator')
+![ec_validator form_dni ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/valid_dni.png 'Ec_validator')
 
 #### Demo form valid RUC
 
-![ec_validator form_ruc ](https://github.com/JaviKo500/ec_validations/blob/main/screenshots/valid_ruc.png 'Ec_validator')
+![ec_validator form_ruc ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/valid_ruc.png 'Ec_validator')
 
 ## Running Tests
 
