@@ -1,0 +1,2 @@
+More examples can be found in the [ec_validations](https://github.com/JaviKo500/ec_validations/tree/main/example) package.
+More examples can be found in the [ec_validator](https://github.com/JaviKo500/ec-validator) app repository.

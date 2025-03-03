@@ -1,3 +1,6 @@
+## 0.0.4
+
+* Update examples and add readme.
 ## 0.0.3
 
 * Update documentation readme images.
