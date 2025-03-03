@@ -1,3 +1,6 @@
+## 0.0.5
+
+* Update example main.
 ## 0.0.4
 
 * Update examples and add readme.
