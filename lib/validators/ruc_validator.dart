@@ -4,8 +4,14 @@ import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 import 'package:ec_validations/helpers/index.dart';
 
+/// Validator for Ecuadorian RUC (Registro Único de Contribuyentes) numbers.
 class RucValidator {
-  
+  /// Validates if an Ecuadorian RUC number is valid for a specific type.
+  ///
+  /// [ruc] The RUC number to validate.
+  /// [typeIdentification] The specific RUC type to validate against.
+  ///
+  /// Returns an [IdentificationResult] with the validation result.
   static IdentificationResult validateRucByType(String ruc, TypeIdentification typeIdentification) {
     try {
       initValidate(ruc, typeIdentification);
@@ -53,6 +59,11 @@ class RucValidator {
     }
   }
 
+  /// Validates an Ecuadorian RUC number against all possible RUC types.
+  ///
+  /// [ruc] The RUC number to validate.
+  ///
+  /// Returns an [IdentificationResult] with the validation result.
   static IdentificationResult validateRuc ( String ruc ){
     final validRucNatural = validateRucByType(ruc, TypeIdentification.rucPersonNatural);
     final validRucPrivate = validateRucByType(ruc, TypeIdentification.rucSocietyPrivate);

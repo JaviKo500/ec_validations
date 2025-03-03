@@ -2,7 +2,13 @@ import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 import 'package:ec_validations/helpers/index.dart';
 
+/// Validator for Ecuadorian national ID numbers.
 class DniValidator {
+  /// Validates if an Ecuadorian national ID number is valid.
+  ///
+  /// [identification] ID number to validate.
+  ///
+  /// Returns an [IdentificationResult] with the validation result.
   static IdentificationResult isValid(String identification) {
     try {
       initValidate(identification, TypeIdentification.dni);
