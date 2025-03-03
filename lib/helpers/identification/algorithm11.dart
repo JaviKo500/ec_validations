@@ -1,5 +1,3 @@
-
-
 import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 
@@ -10,17 +8,21 @@ import 'package:ec_validations/exceptions/index.dart';
 /// [typeIdentification] The type of identification being validated.
 ///
 /// Returns true if the verification digit is valid.
-/// 
+///
 /// Throws an [IdentificationException] if the verification digit is invalid, the identification
 /// type is not supported, or if any part of the identification is not a number.
 
-bool algorithm11 ( String initialDigits, String verificationDigitString, TypeIdentification typeIdentification ) {
+bool algorithm11(
+  String initialDigits,
+  String verificationDigitString,
+  TypeIdentification typeIdentification,
+) {
   final coefficients = listCoefficients[typeIdentification];
 
   if (coefficients == null) {
     throw IdentificationException(
       ErrorCode.invalidType,
-      'Invalid identification type'
+      'Invalid identification type',
     );
   }
 
@@ -35,10 +37,10 @@ bool algorithm11 ( String initialDigits, String verificationDigitString, TypeIde
 
   final listDigits = initialDigits.split('').map((e) => int.parse(e)).toList();
 
-  if ( listDigits.length != coefficients.length ) {
+  if (listDigits.length != coefficients.length) {
     throw IdentificationException(
       ErrorCode.invalidType,
-      'Invalid identification type'
+      'Invalid identification type',
     );
   }
 

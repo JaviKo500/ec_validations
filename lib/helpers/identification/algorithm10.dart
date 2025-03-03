@@ -7,11 +7,11 @@ import 'package:ec_validations/exceptions/index.dart';
 /// [verificationDigitString] The verification digit to validate.
 ///
 /// Returns true if the verification digit is valid.
-/// 
+///
 /// Throws an [IdentificationException] if the verification digit is invalid or if any part
 /// of the identification is not a number.
 
-bool algorithm10 ( String firstDigits, String verificationDigitString ) {
+bool algorithm10(String firstDigits, String verificationDigitString) {
   final verificationDigit = int.tryParse(verificationDigitString);
   if (verificationDigit == null) {
     throw IdentificationException(
@@ -19,10 +19,10 @@ bool algorithm10 ( String firstDigits, String verificationDigitString ) {
       'Invalid verification digit: must be a number.',
     );
   }
-  
+
   const listCoefficients = [2, 1, 2, 1, 2, 1, 2, 1, 2];
 
-  int total= 0;
+  int total = 0;
   for (int i = 0; i < listCoefficients.length; i++) {
     final coefficient = listCoefficients[i];
     final digit = int.tryParse(firstDigits[i]);
@@ -34,7 +34,7 @@ bool algorithm10 ( String firstDigits, String verificationDigitString ) {
       );
     }
     int result = digit * coefficient;
-    if ( result >= 10 ) {
+    if (result >= 10) {
       result -= 9;
     }
 
@@ -43,7 +43,7 @@ bool algorithm10 ( String firstDigits, String verificationDigitString ) {
 
   final residue = total % 10;
 
-  final  verificationDigitResult = 10 - residue;
+  final verificationDigitResult = 10 - residue;
 
   if (verificationDigitResult != verificationDigit) {
     throw IdentificationException(
