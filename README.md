@@ -1,39 +1,99 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+# ec_validator
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+A library for validating Ecuadorian identification documents (ID card and RUC)."
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+#### Null-Safety, Dart 3, with zero external dependencies
 
-## Features
+#### iOS, Android, Linux, Mac, Web, Windows ready
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+![ec_validator demo ](https://github.com/JaviKo500/ec_validations/blob/main/screenshots/validator.png 'Ec_validator')
 
-## Getting started
+## Documentation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+[Documentation](https://medium.com/@bryansuarez/c%C3%B3mo-validar-c%C3%A9dula-y-ruc-en-ecuador-b62c5666186f)
 
-## Usage
+## **Installation**
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### 1. Depend on it
 
-```dart
-const like = 'sample';
+Add this to your package's `pubspec.yaml` file:
+
+```yaml
+dependencies:
+    ec_validator: '^1.0.0+1'
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+#### 2. Install it
+
+You can install packages from the command line:
+
+```bash
+$ pub get
+..
+```
+
+Alternatively, your editor might support pub. Check the docs for your editor to learn more.
+
+#### 3. Import it
+
+Now in your Dart code, you can use:
+
+```Dart
+import 'package:ec_validator/entities/index.dart';
+```
+
+## Usage/Examples
+
+For complete examples, check the `example` folder inside the repository
+
+```dart
+void main() {
+  final result = DniValidator
+   .isValid('0105566046');
+  /**
+   * isValid: true or false
+   * errorMessage: null or error string message
+   * typeCodeError: null or error code
+  */
+  final resultRucPerson = RucValidator
+   .validateRucByType('0105566046001', TypeIdentification.rucPersonNatural);
+  /**
+   * isValid: true or false
+   * errorMessage: null or error string message
+   * typeCodeError: null or error code
+  */
+  final resultRuc = RucValidator.validateRuc('0105566046001');
+  /**
+   * isValid: true or false
+   * errorMessage: null or error string message
+   * typeCodeError: null or error code
+  */
+}
+```
+#### Demo form valid DNI
+![ec_validator form_dni ](https://github.com/JaviKo500/ec_validations/blob/main/screenshots/valid_dni.png 'Ec_validator')
+
+#### Demo form valid RUC
+
+![ec_validator form_ruc ](https://github.com/JaviKo500/ec_validations/blob/main/screenshots/valid_ruc.png 'Ec_validator')
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  flutter test
+```
+
+
+## License
+
+[LICENSE](LICENSE)
+
+
+## Authors
+
+- [@JaviKo500](https://www.github.com/JaviKo500)
+
