@@ -38,8 +38,5 @@ class ValidationRule {
   final String pattern;
   final String errorMessage;
 
-  ValidationRule({
-    required this.pattern,
-    required this.errorMessage,
-  });
+  ValidationRule({required this.pattern, required this.errorMessage});
 }
