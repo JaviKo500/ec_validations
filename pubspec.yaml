@@ -6,7 +6,7 @@ repository: https://github.com/JaviKo500/ec_validations
 issue_tracker: https://github.com/JaviKo500/ec_validations/issues
 topics:
   - ecuador
-  - cedula
+  - dni
   - ruc
   - validator
   - cedula
