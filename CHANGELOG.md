@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Validate RUC and DNI through a static method RucValidator.validateRuc('') - DniValidator.isValid('').
