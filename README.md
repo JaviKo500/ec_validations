@@ -21,7 +21,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    ec_validations: '^0.0.6'
+    ec_validations: '^0.0.7'
 ```
 
 
@@ -41,7 +41,7 @@ Alternatively, your editor might support pub. Check the docs for your editor to 
 Now in your Dart code, you can use:
 
 ```Dart
-import 'package:ec_validator/entities/index.dart';
+import 'package:ec_validations/ec_validations.dart';
 ```
 
 ## Usage/Examples
