@@ -91,12 +91,10 @@ class RucValidator {
         !validRucPublic.isValid) {
       return IdentificationResult(
         isValid: false,
-        errorMessage:
-            validRucNatural.errorMessage ??
+        errorMessage: validRucNatural.errorMessage ??
             validRucPrivate.errorMessage ??
             validRucPublic.errorMessage,
-        typeCodeError:
-            validRucPublic.typeCodeError ??
+        typeCodeError: validRucPublic.typeCodeError ??
             validRucPrivate.typeCodeError ??
             validRucNatural.typeCodeError,
       );

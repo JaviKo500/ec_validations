@@ -1,3 +1,6 @@
+* Dart format code.
+## 0.0.9
+
 * Check if verification digit is 0.
 ## 0.0.8
 
