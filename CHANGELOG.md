@@ -1,3 +1,8 @@
+* Update readme.
+* Check if verification digit is 0.
+## 0.0.8
+
+* Update readme.
 ## 0.0.7
 
 * Update readme.
