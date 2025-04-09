@@ -1,4 +1,3 @@
-* Update readme.
 * Check if verification digit is 0.
 ## 0.0.8
 
