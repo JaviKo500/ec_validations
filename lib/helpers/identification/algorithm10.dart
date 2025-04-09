@@ -43,8 +43,11 @@ bool algorithm10(String firstDigits, String verificationDigitString) {
 
   final residue = total % 10;
 
-  final verificationDigitResult = 10 - residue;
-
+  int  verificationDigitResult = 0;
+  if ( residue != 0 ) {
+    verificationDigitResult = 10 - residue;
+  }
+  
   if (verificationDigitResult != verificationDigit) {
     throw IdentificationException(
       ErrorCode.invalidVerificationDigit,
