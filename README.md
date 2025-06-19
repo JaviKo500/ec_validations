@@ -21,7 +21,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    ec_validations: '^0.0.10'
+    ec_validations: '^0.0.11'
 ```
 
 
