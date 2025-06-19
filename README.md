@@ -70,6 +70,12 @@ void main() {
    * errorMessage: null or error string message
    * typeCodeError: null or error code
   */
+  final resultPossiblyValidRuc = RucValidator.isPossiblyValidRuc('0391034039001');
+  /**
+   * isValid: true or false
+   * errorMessage: null or error string message
+   * typeCodeError: null or error code
+  */
 }
 ```
 #### Demo form valid DNI
