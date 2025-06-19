@@ -11,6 +11,13 @@ void main() {
       expect(result.errorMessage, null);
       expect(result.typeCodeError, null);
     });
+    
+    test('Should return true if identification is valid when is foreign', () {
+      final result = DniValidator.isValid('3050724842');
+      expect(result.isValid, true);
+      expect(result.errorMessage, null);
+      expect(result.typeCodeError, null);
+    });
 
     test('should return invalid result for empty DNI', () {
       final result = DniValidator.isValid('');
@@ -29,7 +36,7 @@ void main() {
     });
 
     test('should return invalid result for DNI with invalid province code', () {
-      final result = DniValidator.isValid('3005566046');
+      final result = DniValidator.isValid('3305566046');
       
       expect(result.isValid, isFalse);
       expect(result.typeCodeError, ErrorCode.invalidCodeProvince);
