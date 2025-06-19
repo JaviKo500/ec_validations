@@ -4,7 +4,6 @@ import 'package:ec_validations/helpers/index.dart';
 
 /// Validator for Ecuadorian RUC (Registro Único de Contribuyentes) numbers.
 class RucValidator {
-
   /// Validates if an Ecuadorian RUC number is valid for only length and province code.
   ///
   /// [ruc] The RUC number to validate.
@@ -20,12 +19,12 @@ class RucValidator {
         typeCodeError: null,
       );
     } catch (e) {
-       if (e is IdentificationException) {
+      if (e is IdentificationException) {
         return IdentificationResult(
           isValid: false,
           errorMessage: e.message,
           typeCodeError: e.code,
-        );  
+        );
       }
       return IdentificationResult(
         isValid: false,
