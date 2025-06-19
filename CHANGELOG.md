@@ -1,28 +1,20 @@
-* Dart format code.
-## 0.0.9
+## [0.0.10] - Fix validation for foreign DNI and add method to check if RUC is possibly valid.
+* Valid dni init with 30 province code.
+* Add method to check if RUC is possibly valid.
+## [0.0.9] - Dart format code.
 
-* Check if verification digit is 0.
-## 0.0.8
+## [0.0.8] - Check if verification digit is 0.
 
-* Update readme.
-## 0.0.7
+## [0.0.7] - Update readme.
 
-* Update readme.
-## 0.0.6
+## [0.0.6] - Update readme.
 
-* Update readme.
-## 0.0.5
+## [0.0.5] - Update readme.
 
-* Update example main.
-## 0.0.4
+## [0.0.4] - Update example main.
 
-* Update examples and add readme.
-## 0.0.3
+## [0.0.3] - Update examples and add readme.
 
-* Update documentation readme images.
-## 0.0.2
+## [0.0.2] - Update documentation readme images.
 
-* Update documentation readme.
-## 0.0.1
-
-* Validate RUC and DNI through a static method RucValidator.validateRuc('') - DniValidator.isValid('').
+## [0.0.1] - Validate RUC and DNI through a static method RucValidator.validateRuc('') - DniValidator.isValid('').
