@@ -113,6 +113,20 @@ void main() {
       expect(result.typeCodeError, isNull);
     });
     
+    test('should return valid result if is possibly valid RUC', () {
+      final result = RucValidator.isPossiblyValidRuc('0391034039001');
+      expect(result.isValid, isTrue);
+      expect(result.errorMessage, isNull);
+      expect(result.typeCodeError, isNull);
+    });
+
+    test('should return invalid result if is possibly valid RUC', () {
+      final result = RucValidator.isPossiblyValidRuc('3391034039001');
+      
+      expect(result.isValid, isFalse);
+      expect(result.errorMessage, isNotNull);
+      expect(result.typeCodeError, isNotNull);
+    });
     test('should return valid result for valid RUC Public Society', () {
       final result = RucValidator.validateRuc('1760004650001');
       

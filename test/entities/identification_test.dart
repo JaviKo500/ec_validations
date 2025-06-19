@@ -5,7 +5,7 @@ import 'package:ec_validations/entities/index.dart';
 void main() {
   group('TypeIdentification Enum Tests', () {
     test('TypeIdentification should be correct values ', () {
-      expect( TypeIdentification.values.length , equals(5));
+      expect( TypeIdentification.values.length , equals(6));
       expect(TypeIdentification.values.contains(TypeIdentification.dni), isTrue);
       expect(TypeIdentification.values.contains(TypeIdentification.ruc), isTrue);
       expect(TypeIdentification.values.contains(TypeIdentification.rucPersonNatural), isTrue);

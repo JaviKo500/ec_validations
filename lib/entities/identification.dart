@@ -5,6 +5,7 @@ enum TypeIdentification {
   rucPersonNatural,
   rucSocietyPrivate,
   rucPublicSociety,
+  possiblyValidRuc,
 }
 
 /// Result of an identification validation operation.
