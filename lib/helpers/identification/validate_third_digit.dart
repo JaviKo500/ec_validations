@@ -7,7 +7,7 @@ import 'package:ec_validations/exceptions/index.dart';
 /// [typeIdentification] The type of identification being validated.
 ///
 /// Throws an [IdentificationException] if the verification digit is invalid or
-/// thirdDigit is less than 0 or greater than 5 for DNI and RUC Person Natural.
+/// thirdDigit is less than 0 or greater than 9 for DNI and RUC Person Natural.
 /// thirdDigit is different than 9 for RUC Society Private
 /// thirdDigit is different than 6 for RUC Public Society.
 
@@ -26,10 +26,10 @@ void validateThirdDigit(
   switch (typeIdentification) {
     case TypeIdentification.dni:
     case TypeIdentification.rucPersonNatural:
-      if (thirdDigitInt < 0 || thirdDigitInt > 5) {
+      if (thirdDigitInt < 0 || thirdDigitInt > 9) {
         throw IdentificationException(
           ErrorCode.invalidThirdDigit,
-          'Invalid third digit: must be a number between 0 and 5.',
+          'Invalid third digit: must be a number between 0 and 9.',
         );
       }
       break;
