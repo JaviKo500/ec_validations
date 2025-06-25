@@ -1,3 +1,5 @@
+## 0.0.14
+* Update validation third digit dni and rucPersonNatural.
 ## 0.0.13
 * Dart format code.
 ## 0.0.12
