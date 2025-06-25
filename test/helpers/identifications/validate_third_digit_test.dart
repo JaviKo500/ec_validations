@@ -34,7 +34,7 @@ void main() {
       ));
     });
 
-    test('Should throw exception if third digit of dni is less than 0 or greater than 5', () {
+    test('Should throw exception if third digit of dni is less than 0 or greater than 9', () {
       expect( () {
         validateThirdDigit('-1', TypeIdentification.dni);
       }, throwsA(
@@ -42,25 +42,25 @@ void main() {
           isA<IdentificationException>(),
           predicate( (IdentificationException e) =>
             e.code == ErrorCode.invalidThirdDigit
-            && e.message == 'Invalid third digit: must be a number between 0 and 5.'
+            && e.message == 'Invalid third digit: must be a number between 0 and 9.'
           )
         )
       ));
 
       expect( () {
-        validateThirdDigit('6', TypeIdentification.dni);
+        validateThirdDigit('10', TypeIdentification.dni);
       }, throwsA(
         allOf(
           isA<IdentificationException>(),
           predicate( (IdentificationException e) =>
             e.code == ErrorCode.invalidThirdDigit
-            && e.message == 'Invalid third digit: must be a number between 0 and 5.'
+            && e.message == 'Invalid third digit: must be a number between 0 and 9.'
           )
         )
       ));
     });
 
-    test('Should throw exception if third digit of rucPersonNatural is less to 0 or greater than 5', () {
+    test('Should throw exception if third digit of rucPersonNatural is less to 0 or greater than 9', () {
       expect( () {
         validateThirdDigit('-1', TypeIdentification.rucPersonNatural);
       }, throwsA(
@@ -68,19 +68,19 @@ void main() {
           isA<IdentificationException>(),
           predicate( (IdentificationException e) =>
             e.code == ErrorCode.invalidThirdDigit
-            && e.message == 'Invalid third digit: must be a number between 0 and 5.'
+            && e.message == 'Invalid third digit: must be a number between 0 and 9.'
           )
         )
       ));
 
       expect( () {
-        validateThirdDigit('6', TypeIdentification.rucPersonNatural);
+        validateThirdDigit('10', TypeIdentification.rucPersonNatural);
       }, throwsA(
         allOf(
           isA<IdentificationException>(),
           predicate( (IdentificationException e) =>
             e.code == ErrorCode.invalidThirdDigit
-            && e.message == 'Invalid third digit: must be a number between 0 and 5.'
+            && e.message == 'Invalid third digit: must be a number between 0 and 9.'
           )
         )
       ));

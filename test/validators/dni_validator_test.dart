@@ -19,6 +19,13 @@ void main() {
       expect(result.typeCodeError, null);
     });
 
+    test('Should return true if identification is valid when is foreign with other province', () {
+      final result = DniValidator.isValid('1761436656');
+      expect(result.isValid, true);
+      expect(result.errorMessage, null);
+      expect(result.typeCodeError, null);
+    });
+
     test('should return invalid result for empty DNI', () {
       final result = DniValidator.isValid('');
       
@@ -40,13 +47,6 @@ void main() {
       
       expect(result.isValid, isFalse);
       expect(result.typeCodeError, ErrorCode.invalidCodeProvince);
-    });
-
-    test('should return invalid result for DNI with invalid third digit', () {
-      final result = DniValidator.isValid('0195566046');
-      
-      expect(result.isValid, isFalse);
-      expect(result.typeCodeError, ErrorCode.invalidThirdDigit);
     });
 
     test('should return invalid result for DNI with invalid check digit', () {

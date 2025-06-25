@@ -53,13 +53,6 @@ void main() {
       expect(result.typeCodeError, ErrorCode.invalidCodeProvince);
     });
     
-    test('should return invalid result for RUC Person Natural with invalid third digit', () {
-      final result = RucValidator.validateRucByType('0185566046001', TypeIdentification.rucPersonNatural);
-      
-      expect(result.isValid, isFalse);
-      expect(result.typeCodeError, ErrorCode.invalidThirdDigit);
-    });
-    
     test('should return invalid result for RUC Society Private with invalid third digit', () {
       final result = RucValidator.validateRucByType('1780011674001', TypeIdentification.rucSocietyPrivate);
       
