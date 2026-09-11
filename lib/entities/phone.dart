@@ -24,6 +24,7 @@ enum PhoneErrorCode {
   invalidFormat,
   invalidCountryCode,
   invalidEmpty,
+  invalidPhone,
 }
 
 /// rule for validation with pattern matching
