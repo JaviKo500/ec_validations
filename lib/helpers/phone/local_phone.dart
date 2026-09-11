@@ -6,7 +6,7 @@ final _localPhoneRegExp = RegExp(r'^09\d{8}$');
 
 /// Validates a local Ecuadorian phone number.
 /// 
-void validateLocalPhone(String phoneNumber) {
+String validateLocalPhone(String phoneNumber) {
   final value = phoneNumber.trim();
   if (value.isEmpty) {
     throw PhoneException(
@@ -28,4 +28,6 @@ void validateLocalPhone(String phoneNumber) {
       'Phone number must start with 09 and contain exactly 10 digits.'
     );
   }
+
+  return value;
 }
