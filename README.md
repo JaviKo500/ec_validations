@@ -139,6 +139,10 @@ When the number is invalid, `typeCodeError` is one of `PhoneErrorCode`:
 
 ![ec_validator form_ruc ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/valid_ruc.png 'Ec_validator')
 
+#### Demo form valid Phone
+
+![ec_validator form_phone ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/valid_phone.png 'Ec_validator')
+
 ## Running Tests
 
 To run tests, run the following command
