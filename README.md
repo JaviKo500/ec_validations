@@ -1,7 +1,7 @@
 
 # ec_validator
 
-A library for validating Ecuadorian identification documents (ID card and RUC)."
+A library for validating Ecuadorian identification documents (ID card and RUC) and phone numbers.
 
 #### Null-Safety, Dart 3, with zero external dependencies
 
@@ -21,7 +21,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    ec_validations: '^0.0.14'
+    ec_validations: '^0.0.15'
 ```
 
 
@@ -78,6 +78,60 @@ void main() {
   */
 }
 ```
+
+### Phone numbers
+
+`PhoneValidator` returns a `PhoneResult`, which adds a `normalizedNumber` field
+holding the cleaned number when the validation succeeds.
+
+```dart
+void main() {
+  /// Accepts both notations: 0991234567 and +593991234567
+  final result = PhoneValidator.isValid('099 123 4567');
+  /**
+   * isValid: true or false
+   * normalizedNumber: '0991234567' or null
+   * errorMessage: null or error string message
+   * typeCodeError: null or error code
+  */
+
+  /// Only the local notation
+  final resultLocal = PhoneValidator.isValidLocal('0991234567');
+  /**
+   * normalizedNumber: '0991234567' or null
+  */
+
+  /// Only the international notation
+  final resultInternational = PhoneValidator.isValidInternational('+593 99 123 4567');
+  /**
+   * normalizedNumber: '+593991234567' or null
+  */
+}
+```
+
+Separators such as spaces, dots, dashes and parentheses are removed before
+validating, and `isValid` keeps the notation of the input:
+
+| Input | `normalizedNumber` |
+| --- | --- |
+| `0991234567` | `0991234567` |
+| `099 123 4567` | `0991234567` |
+| `(099) 123-4567` | `0991234567` |
+| `+593991234567` | `+593991234567` |
+| `00593991234567` | `+593991234567` |
+| `593991234567` | `+593991234567` |
+| `+593 (0)99 123 4567` | `+593991234567` |
+
+When the number is invalid, `typeCodeError` is one of `PhoneErrorCode`:
+
+| Code | Meaning |
+| --- | --- |
+| `invalidEmpty` | The number is empty |
+| `invalidLength` | The local number is not exactly 10 digits |
+| `invalidFormat` | The local number does not start with `09` |
+| `invalidCountryCode` | The number does not start with the Ecuador code `+593` |
+| `invalidPhone` | Unexpected error |
+
 #### Demo form valid DNI
 ![ec_validator form_dni ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/valid_dni.png 'Ec_validator')
 

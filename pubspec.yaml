@@ -1,6 +1,6 @@
 name: ec_validations
-description: A library for validating Ecuadorian identification documents (ID card and RUC).
-version: 0.0.14
+description: A library for validating Ecuadorian identification documents (ID card and RUC) and phone numbers.
+version: 0.0.15
 homepage: https://github.com/JaviKo500
 repository: https://github.com/JaviKo500/ec_validations
 issue_tracker: https://github.com/JaviKo500/ec_validations/issues
@@ -10,6 +10,7 @@ topics:
   - ruc
   - validator
   - cedula
+  - phone
 
 environment:
   sdk: ^3.0.0
