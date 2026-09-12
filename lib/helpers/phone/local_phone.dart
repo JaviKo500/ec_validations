@@ -1,13 +1,14 @@
 
 import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
+import 'package:ec_validations/helpers/phone/normalize_phone.dart';
 
 final _localPhoneRegExp = RegExp(r'^09\d{8}$');
 
 /// Validates a local Ecuadorian phone number.
 /// 
 String validateLocalPhone(String phoneNumber) {
-  final value = phoneNumber.trim();
+  final value = stripPhoneSeparators(phoneNumber);
   if (value.isEmpty) {
     throw PhoneException(
       PhoneErrorCode.invalidEmpty,
