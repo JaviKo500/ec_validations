@@ -1,10 +1,3 @@
-/// type of phone number
-enum PhoneType {
-  localPhone,
-  internationalPhone,
-  internationalLocalPhone,
-}
-
 /// result of phone number validation
 class PhoneResult {
   final bool isValid;
@@ -30,12 +23,4 @@ enum PhoneErrorCode {
   invalidCountryCode,
   invalidEmpty,
   invalidPhone,
-}
-
-/// rule for validation with pattern matching
-class PhoneValidationRule {
-  final String pattern;
-  final String errorMessage;
-
-  PhoneValidationRule({required this.pattern, required this.errorMessage});
 }
