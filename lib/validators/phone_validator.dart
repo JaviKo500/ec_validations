@@ -10,43 +10,35 @@ class PhoneValidator {
   /// [phoneNumber] Phone number to validate.
   ///   
   /// Returns a [PhoneResult] with the validation result.
-  static PhoneResult isValidLocal( String phoneNumber ) {
-    try {
-      final validatedNumber = validateLocalPhone( phoneNumber );
-      return PhoneResult(
-        isValid: true,
-        normalizedNumber: validatedNumber,
-        errorMessage: null,
-        typeCodeError: null,
-      );
-    } catch (e) {
-      if ( e is PhoneException ) {
-        return PhoneResult(
-          isValid: false,
-          errorMessage: e.message,
-          typeCodeError: e.code,
-        );
-      }
-
-      return PhoneResult(
-        isValid: false,
-        errorMessage: 'Invalid phone number',
-        typeCodeError: PhoneErrorCode.invalidPhone,
-      );
-    }
-  }
+  static PhoneResult isValidLocal( String phoneNumber ) =>
+    _evaluate(() => validateLocalPhone( phoneNumber ));
 
   /// Validates if an international Ecuadorian phone number is valid.
   ///
   /// [phoneNumber] Phone number to validate.
   /// 
   /// Returns a [PhoneResult] with the validation result.
-  static PhoneResult isValidInternational( String phoneNumber ) {
+  static PhoneResult isValidInternational( String phoneNumber ) =>
+    _evaluate(() => validateInternationalPhone( phoneNumber ));
+
+  /// Validates if an Ecuadorian phone number is valid in either local
+  /// (`0991234567`) or international (`+593991234567`) notation.
+  ///
+  /// [phoneNumber] Phone number to validate.
+  ///
+  /// Returns a [PhoneResult] with the validation result.
+  static PhoneResult isValid( String phoneNumber ) =>
+    _evaluate(() => validateInternationalLocalPhone( phoneNumber ));
+
+  /// Runs a validation helper and maps its outcome to a [PhoneResult].
+  ///
+  /// [validate] Helper returning the normalized number or throwing a
+  /// [PhoneException].
+  static PhoneResult _evaluate( String Function() validate ) {
     try {
-      final validatedNumber = validateInternationalPhone( phoneNumber );
       return PhoneResult(
         isValid: true,
-        normalizedNumber: validatedNumber,
+        normalizedNumber: validate(),
         errorMessage: null,
         typeCodeError: null,
       );
@@ -58,6 +50,7 @@ class PhoneValidator {
           typeCodeError: e.code,
         );
       }
+
       return PhoneResult(
         isValid: false,
         errorMessage: 'Invalid phone number',
