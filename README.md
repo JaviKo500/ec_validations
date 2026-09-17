@@ -1,7 +1,7 @@
 
 # ec_validator
 
-A library for validating Ecuadorian identification documents (ID card and RUC) and phone numbers.
+A library for validating Ecuadorian identification documents (ID card and RUC) and mobile phone numbers.
 
 #### Null-Safety, Dart 3, with zero external dependencies
 
@@ -83,6 +83,10 @@ void main() {
 
 `PhoneValidator` returns a `PhoneResult`, which adds a `normalizedNumber` field
 holding the cleaned number when the validation succeeds.
+
+> **Scope:** only Ecuadorian **mobile** numbers are supported: 10 digits
+> starting with `09` (`+593 9…` in international notation). Landline numbers
+> such as `022345678` or `+59322345678` are rejected.
 
 ```dart
 void main() {

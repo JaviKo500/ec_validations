@@ -5,8 +5,10 @@ import 'package:ec_validations/helpers/phone/normalize_phone.dart';
 
 final _localPhoneRegExp = RegExp(r'^09\d{8}$');
 
-/// Validates a local Ecuadorian phone number.
-/// 
+/// Validates a local Ecuadorian mobile phone number: 10 digits starting with
+/// `09`. Landline numbers are not supported.
+///
+/// [phoneNumber] Phone number to validate.
 String validateLocalPhone(String phoneNumber) {
   final value = stripPhoneSeparators(phoneNumber);
   if (value.isEmpty) {

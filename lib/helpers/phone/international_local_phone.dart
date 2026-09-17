@@ -10,6 +10,8 @@ import 'package:ec_validations/helpers/index.dart';
 /// The format is detected after normalization, so separators such as spaces,
 /// dots, dashes and parentheses are accepted in both notations.
 ///
+/// Only mobile numbers are supported; landline numbers are rejected.
+///
 /// [phoneNumber] Phone number to validate.
 ///
 /// Returns the normalized number, keeping the notation of the input.

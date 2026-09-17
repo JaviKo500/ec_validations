@@ -2,7 +2,10 @@ import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 import 'package:ec_validations/helpers/index.dart';
 
-/// Validator for Ecuadorian phone numbers.
+/// Validator for Ecuadorian mobile phone numbers.
+///
+/// Accepts the local (`0991234567`) and international (`+593991234567`)
+/// notations. Landline numbers are not supported.
 class PhoneValidator {
 
   /// Validates if a local Ecuadorian phone number is valid.
