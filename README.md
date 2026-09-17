@@ -127,8 +127,8 @@ When the number is invalid, `typeCodeError` is one of `PhoneErrorCode`:
 | Code | Meaning |
 | --- | --- |
 | `invalidEmpty` | The number is empty |
-| `invalidLength` | The local number is not exactly 10 digits |
-| `invalidFormat` | The local number does not start with `09` |
+| `invalidLength` | The local number is not exactly 10 characters long |
+| `invalidFormat` | The local number does not start with `09` or contains non-digit characters |
 | `invalidCountryCode` | The number does not start with the Ecuador code `+593` |
 | `invalidPhone` | Unexpected error |
 

@@ -19,7 +19,7 @@ String validateLocalPhone(String phoneNumber) {
   if ( value.length !=10) {
     throw PhoneException(
       PhoneErrorCode.invalidLength,
-      'Phone number must be exactly 10 digits long.'
+      'Phone number must be exactly 10 characters long.'
     );
   }
 
