@@ -86,4 +86,55 @@ void main() {
       );
     });
   });
+
+  group('validateLocalPhone Landline number', (){
+    test('return equal valid landline number', (){
+      expect( validateLocalPhone('022345678'), '022345678' );
+      expect( validateLocalPhone('042345678'), '042345678' );
+      expect( validateLocalPhone('072345678'), '072345678' );
+      expect( validateLocalPhone(' (02) 234-5678 '), '022345678' );
+    });
+
+    test('return invalid length exception', (){
+      expect(
+        () => validateLocalPhone('02234567'),
+        throwsA(
+          allOf(
+            isA<PhoneException>(),
+            predicate( ( PhoneException e ) => e.code == PhoneErrorCode.invalidLength )
+          )
+        )
+      );
+    });
+
+    test('return invalid format exception', (){
+      expect(
+        () => validateLocalPhone('012345678'),
+        throwsA(
+          allOf(
+            isA<PhoneException>(),
+            predicate( ( PhoneException e ) => e.code == PhoneErrorCode.invalidFormat )
+          )
+        )
+      );
+      expect(
+        () => validateLocalPhone('082345678'),
+        throwsA(
+          allOf(
+            isA<PhoneException>(),
+            predicate( ( PhoneException e ) => e.code == PhoneErrorCode.invalidFormat )
+          )
+        )
+      );
+      expect(
+        () => validateLocalPhone('0223456789'),
+        throwsA(
+          allOf(
+            isA<PhoneException>(),
+            predicate( ( PhoneException e ) => e.code == PhoneErrorCode.invalidFormat )
+          )
+        )
+      );
+    });
+  });
 }

@@ -4,9 +4,8 @@ import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 import 'package:ec_validations/helpers/index.dart';
 
-/// Validates an international Ecuadorian mobile phone number: the Ecuador
-/// country code `+593` followed by a mobile number. Landline numbers are not
-/// supported.
+/// Validates an international Ecuadorian phone number: the Ecuador country
+/// code `+593` followed by a mobile (`9…`) or landline (`2…` to `7…`) number.
 ///
 /// [phoneNumber] Phone number to validate.
 String  validateInternationalPhone(String phoneNumber) {

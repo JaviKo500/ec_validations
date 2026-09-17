@@ -1,7 +1,7 @@
 
 # ec_validator
 
-A library for validating Ecuadorian identification documents (ID card and RUC) and mobile phone numbers.
+A library for validating Ecuadorian identification documents (ID card and RUC) and phone numbers.
 
 #### Null-Safety, Dart 3, with zero external dependencies
 
@@ -84,9 +84,9 @@ void main() {
 `PhoneValidator` returns a `PhoneResult`, which adds a `normalizedNumber` field
 holding the cleaned number when the validation succeeds.
 
-> **Scope:** only Ecuadorian **mobile** numbers are supported: 10 digits
-> starting with `09` (`+593 9…` in international notation). Landline numbers
-> such as `022345678` or `+59322345678` are rejected.
+> **Supported formats:** mobile numbers, 10 digits starting with `09`, and
+> landline numbers, 9 digits starting with `02` to `07` (the area code). Both
+> work in local and international (`+593…`) notation.
 
 ```dart
 void main() {
@@ -125,14 +125,18 @@ validating, and `isValid` keeps the notation of the input:
 | `00593991234567` | `+593991234567` |
 | `593991234567` | `+593991234567` |
 | `+593 (0)99 123 4567` | `+593991234567` |
+| `022345678` | `022345678` |
+| `(02) 234-5678` | `022345678` |
+| `+59322345678` | `+59322345678` |
+| `+593 (0)2 234 5678` | `+59322345678` |
 
 When the number is invalid, `typeCodeError` is one of `PhoneErrorCode`:
 
 | Code | Meaning |
 | --- | --- |
 | `invalidEmpty` | The number is empty |
-| `invalidLength` | The local number is not exactly 10 characters long |
-| `invalidFormat` | The local number does not start with `09` or contains non-digit characters |
+| `invalidLength` | The local number is not 10 characters long (mobile) or 9 (landline) |
+| `invalidFormat` | The local number does not start with `09` (mobile) or `02` to `07` (landline), or contains non-digit characters |
 | `invalidCountryCode` | The number does not start with the Ecuador code `+593` |
 | `invalidPhone` | Unexpected error |
 

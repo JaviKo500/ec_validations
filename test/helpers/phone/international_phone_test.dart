@@ -68,4 +68,25 @@ void main() {
       );
     });
   });
+
+  group('validateInternationalPhone landline numbers', (){
+    test('return a valid landline number phone', (){
+      expect(validateInternationalPhone('+59322345678'), '+59322345678');
+      expect(validateInternationalPhone('0059322345678'), '+59322345678');
+      expect(validateInternationalPhone('59322345678'), '+59322345678');
+      expect(validateInternationalPhone('+593 (0)2 234 5678'), '+59322345678');
+    });
+
+    test('return invalid format exception for an invalid area code', (){
+      expect(
+        () => validateInternationalPhone('+59312345678'), 
+        throwsA(
+          allOf(
+            isA<PhoneException>(),
+            predicate( ( PhoneException e ) => e.code == PhoneErrorCode.invalidFormat )
+          )
+        ) 
+      );
+    });
+  });
 }

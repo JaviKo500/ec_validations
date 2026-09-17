@@ -96,4 +96,29 @@ void main() {
       );
     });
   });
+
+  group('validateInternationalLocalPhone landline numbers', (){
+    test('return the landline number keeping the local notation', (){
+      expect(validateInternationalLocalPhone('022345678'), '022345678');
+      expect(validateInternationalLocalPhone('(02) 234-5678'), '022345678');
+    });
+
+    test('return the landline number keeping the international notation', (){
+      expect(validateInternationalLocalPhone('+59322345678'), '+59322345678');
+      expect(validateInternationalLocalPhone('0059322345678'), '+59322345678');
+      expect(validateInternationalLocalPhone('+593 (0)2 234 5678'), '+59322345678');
+    });
+
+    test('return invalid format exception for an invalid area code', (){
+      expect(
+        () => validateInternationalLocalPhone('012345678'), 
+        throwsA(
+          allOf(
+            isA<PhoneException>(),
+            predicate( ( PhoneException e ) => e.code == PhoneErrorCode.invalidFormat )
+          )
+        ) 
+      );
+    });
+  });
 }

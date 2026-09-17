@@ -3,10 +3,14 @@ import 'package:ec_validations/entities/index.dart';
 import 'package:ec_validations/exceptions/index.dart';
 import 'package:ec_validations/helpers/phone/normalize_phone.dart';
 
-final _localPhoneRegExp = RegExp(r'^09\d{8}$');
+/// Mobile numbers: `09` plus 8 digits.
+final _mobilePhoneRegExp = RegExp(r'^09\d{8}$');
 
-/// Validates a local Ecuadorian mobile phone number: 10 digits starting with
-/// `09`. Landline numbers are not supported.
+/// Landline numbers: `0` plus the area code (`2` to `7`) plus 7 digits.
+final _landlinePhoneRegExp = RegExp(r'^0[2-7]\d{7}$');
+
+/// Validates a local Ecuadorian phone number, either mobile (10 digits
+/// starting with `09`) or landline (9 digits starting with `02` to `07`).
 ///
 /// [phoneNumber] Phone number to validate.
 String validateLocalPhone(String phoneNumber) {
@@ -18,17 +22,20 @@ String validateLocalPhone(String phoneNumber) {
     );
   }
 
-  if ( value.length !=10) {
+  if (value.length != 10 && value.length != 9) {
     throw PhoneException(
       PhoneErrorCode.invalidLength,
-      'Phone number must be exactly 10 characters long.'
+      'Phone number must be exactly 10 characters long for a mobile number '
+      'or 9 for a landline number.'
     );
   }
 
-  if (!_localPhoneRegExp.hasMatch(value)) {
+  if (!_mobilePhoneRegExp.hasMatch(value) &&
+      !_landlinePhoneRegExp.hasMatch(value)) {
     throw PhoneException(
       PhoneErrorCode.invalidFormat,
-      'Phone number must start with 09 and contain exactly 10 digits.'
+      'Phone number must start with 09 for a mobile number or with 02 to 07 '
+      'for a landline number.'
     );
   }
 
