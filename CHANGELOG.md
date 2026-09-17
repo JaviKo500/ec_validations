@@ -1,5 +1,6 @@
 ## 0.0.15
 * Add phone number validation: PhoneValidator.isValid, isValidLocal and isValidInternational.
+* Phone validation supports mobile (09) and landline (02-07) numbers.
 ## 0.0.14
 * Update validation third digit dni and rucPersonNatural.
 ## 0.0.13
