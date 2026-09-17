@@ -52,5 +52,10 @@ void main() {
     test('returns the input string if it is already normalized', () {
       expect(normalizePhone('0891234567'), '0891234567');
     });
+
+    test('keeps a leading 00 when the country code does not follow', () {
+      expect(normalizePhone('0023456789'), '0023456789');
+      expect(normalizePhone('0091234567'), '0091234567');
+    });
   });
 }

@@ -135,8 +135,8 @@ When the number is invalid, `typeCodeError` is one of `PhoneErrorCode`:
 | Code | Meaning |
 | --- | --- |
 | `invalidEmpty` | The number is empty |
-| `invalidLength` | The local number is not 10 characters long (mobile) or 9 (landline) |
-| `invalidFormat` | The local number does not start with `09` (mobile) or `02` to `07` (landline), or contains non-digit characters |
+| `invalidLength` | The number does not have the expected length: 10 digits (mobile) or 9 (landline) in local notation, 9 or 8 after `+593` |
+| `invalidFormat` | The number does not start with `09` (mobile) or `02` to `07` (landline) — `9` or `2` to `7` after `+593` — or contains non-digit characters |
 | `invalidCountryCode` | The number does not start with the Ecuador code `+593` |
 | `invalidPhone` | Unexpected error |
 

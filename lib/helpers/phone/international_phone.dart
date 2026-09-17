@@ -25,6 +25,29 @@ String  validateInternationalPhone(String phoneNumber) {
     );
   }
 
-  validateLocalPhone('0${value.substring(ecCountryCode.length)}');
+  /// The local helper reports the lengths and prefixes of the local notation,
+  /// so its errors are rewritten to describe the number as it was typed.
+  try {
+    validateLocalPhone('0${value.substring(ecCountryCode.length)}');
+  } on PhoneException catch (e) {
+    if (e.code == PhoneErrorCode.invalidLength) {
+      throw PhoneException(
+        PhoneErrorCode.invalidLength,
+        'Phone number must have exactly 9 digits after $ecCountryCode for a '
+        'mobile number or 8 for a landline number.'
+      );
+    }
+
+    if (e.code == PhoneErrorCode.invalidFormat) {
+      throw PhoneException(
+        PhoneErrorCode.invalidFormat,
+        'Phone number must continue with 9 for a mobile number or with 2 to 7 '
+        'for a landline number after $ecCountryCode.'
+      );
+    }
+
+    rethrow;
+  }
+
   return value;
 }
