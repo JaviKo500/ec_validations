@@ -16,7 +16,7 @@ void initValidate(
   if (identification.isEmpty || identification.trim().isEmpty) {
     throw IdentificationException(
       ErrorCode.invalidEmpty,
-      'Identification cannot be empty',
+      EcMessageKey.identificationEmpty,
     );
   }
 
@@ -25,7 +25,7 @@ void initValidate(
   if (ruler == null) {
     throw IdentificationException(
       ErrorCode.invalidType,
-      'Invalid identification type',
+      EcMessageKey.identificationInvalidType,
     );
   }
 
@@ -34,35 +34,16 @@ void initValidate(
   if (!regExp.hasMatch(identification)) {
     throw IdentificationException(
       ErrorCode.invalidLengthOrFormat,
-      ruler.errorMessage,
+      ruler.messageKey,
+      ruler.args,
     );
   }
 }
 
 final Map<TypeIdentification, ValidationRule> mapRules = {
-  TypeIdentification.dni: ValidationRule(
-    pattern: r'^\d{10}$',
-    errorMessage:
-        'Invalid identification: must be exactly 10 digits and contain only numbers.',
-  ),
-  TypeIdentification.ruc: ValidationRule(
-    pattern: r'^\d{13}$',
-    errorMessage:
-        'Invalid identification: must be exactly 13 digits and contain only numbers.',
-  ),
-  TypeIdentification.rucPersonNatural: ValidationRule(
-    pattern: r'^\d{13}$',
-    errorMessage:
-        'Invalid identification: must be exactly 13 digits and contain only numbers.',
-  ),
-  TypeIdentification.rucPublicSociety: ValidationRule(
-    pattern: r'^\d{13}$',
-    errorMessage:
-        'Invalid identification: must be exactly 13 digits and contain only numbers.',
-  ),
-  TypeIdentification.rucSocietyPrivate: ValidationRule(
-    pattern: r'^\d{13}$',
-    errorMessage:
-        'Invalid identification: must be exactly 13 digits and contain only numbers.',
-  ),
+  TypeIdentification.dni: ValidationRule.digits(10),
+  TypeIdentification.ruc: ValidationRule.digits(13),
+  TypeIdentification.rucPersonNatural: ValidationRule.digits(13),
+  TypeIdentification.rucPublicSociety: ValidationRule.digits(13),
+  TypeIdentification.rucSocietyPrivate: ValidationRule.digits(13),
 };

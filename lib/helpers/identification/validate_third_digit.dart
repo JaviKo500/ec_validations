@@ -19,7 +19,7 @@ void validateThirdDigit(
   if (thirdDigitInt == null) {
     throw IdentificationException(
       ErrorCode.invalidThirdDigit,
-      'Invalid third digit: must be a number.',
+      EcMessageKey.thirdDigitNotNumber,
     );
   }
 
@@ -29,7 +29,7 @@ void validateThirdDigit(
       if (thirdDigitInt < 0 || thirdDigitInt > 9) {
         throw IdentificationException(
           ErrorCode.invalidThirdDigit,
-          'Invalid third digit: must be a number between 0 and 9.',
+          EcMessageKey.thirdDigitOutOfRange,
         );
       }
       break;
@@ -37,7 +37,7 @@ void validateThirdDigit(
       if (thirdDigitInt != 9) {
         throw IdentificationException(
           ErrorCode.invalidThirdDigit,
-          'Invalid third digit: must be a number equal to 9.',
+          EcMessageKey.thirdDigitMustBeNine,
         );
       }
       break;
@@ -45,14 +45,14 @@ void validateThirdDigit(
       if (thirdDigitInt != 6) {
         throw IdentificationException(
           ErrorCode.invalidThirdDigit,
-          'Invalid third digit: must be a number equal to 6.',
+          EcMessageKey.thirdDigitMustBeSix,
         );
       }
       break;
     default:
       throw IdentificationException(
         ErrorCode.invalidType,
-        'Invalid identification type',
+        EcMessageKey.identificationInvalidType,
       );
   }
 }

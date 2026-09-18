@@ -15,7 +15,7 @@ void validateCodeProvince(String codeProvince) {
   if (code == null || code < minProvinceCode || code > maxProvinceCode) {
     throw IdentificationException(
       ErrorCode.invalidCodeProvince,
-      'Invalid province code: the first two digits must be a number between 00 and 24.',
+      EcMessageKey.codeProvinceInvalid,
     );
   }
 }

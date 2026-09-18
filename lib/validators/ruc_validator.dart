@@ -22,14 +22,15 @@ class RucValidator {
       if (e is IdentificationException) {
         return IdentificationResult(
           isValid: false,
-          errorMessage: e.message,
-          typeCodeError: e.code,
+          messageKey: e.key,
+          messageArgs: e.args,
+          typeCodeError: e.code
         );
       }
       return IdentificationResult(
         isValid: false,
-        errorMessage: 'Invalid ruc identification',
         typeCodeError: ErrorCode.invalidIdentification,
+        messageKey: EcMessageKey.rucInvalid,
       );
     }
   }
@@ -74,7 +75,7 @@ class RucValidator {
         default:
           throw IdentificationException(
             ErrorCode.invalidType,
-            'Invalid identification type',
+            EcMessageKey.identificationInvalidType,
           );
       }
       return IdentificationResult(
@@ -86,14 +87,15 @@ class RucValidator {
       if (e is IdentificationException) {
         return IdentificationResult(
           isValid: false,
-          errorMessage: e.message,
-          typeCodeError: e.code,
+          messageKey: e.key,
+          messageArgs: e.args,
+          typeCodeError: e.code
         );
       }
       return IdentificationResult(
         isValid: false,
-        errorMessage: 'Invalid ruc identification',
         typeCodeError: ErrorCode.invalidIdentification,
+        messageKey: EcMessageKey.rucInvalid,
       );
     }
   }
@@ -119,14 +121,21 @@ class RucValidator {
     if (!validRucNatural.isValid &&
         !validRucPrivate.isValid &&
         !validRucPublic.isValid) {
+      /// Every type failed, so the first failure is reported as a whole: its
+      /// message key, arguments and error code describe the same problem.
+      final failure = [
+        validRucNatural,
+        validRucPrivate,
+        validRucPublic,
+      ].firstWhere(
+        (result) => result.messageKey != null,
+        orElse: () => validRucNatural,
+      );
       return IdentificationResult(
         isValid: false,
-        errorMessage: validRucNatural.errorMessage ??
-            validRucPrivate.errorMessage ??
-            validRucPublic.errorMessage,
-        typeCodeError: validRucPublic.typeCodeError ??
-            validRucPrivate.typeCodeError ??
-            validRucNatural.typeCodeError,
+        messageKey: failure.messageKey,
+        messageArgs: failure.messageArgs,
+        typeCodeError: failure.typeCodeError,
       );
     }
     return IdentificationResult(

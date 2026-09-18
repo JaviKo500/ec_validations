@@ -1,3 +1,4 @@
+import 'package:ec_validations/l10n/ec_validations_l10n.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:ec_validations/entities/index.dart';
@@ -53,15 +54,22 @@ void main() {
   group('ValidationRule Tests', (){
     test('Should create ValidationRule with pattern and error message', (){
       const pattern = r'^\d{10}$';
-      const errorMessage = 'Dni required 10 digits and only numbers';
-      
-      final rule = ValidationRule(
-        pattern: pattern,
-        errorMessage: errorMessage,
-      );
-      
+      const errorMessage = 'Invalid identification: must be exactly 10 digits and contain only numbers.';
+      final rule = ValidationRule.digits(10);
       expect(rule.pattern, equals(pattern));
-      expect(rule.errorMessage, equals(errorMessage));
+      expect(rule.messageKey, equals(EcMessageKey.identificationLengthOrFormat));
+      expect(rule.args, equals({'digits': 10}));
+      expect(EcValidationsL10n.messages.message(rule.messageKey, rule.args), equals(errorMessage));
+    });
+
+    test('Should build the rule message with its own digits', (){
+      final rule = ValidationRule.digits(13);
+
+      expect(rule.pattern, equals(r'^\d{13}$'));
+      expect(
+        EcValidationsL10n.messages.message(rule.messageKey, rule.args),
+        equals('Invalid identification: must be exactly 13 digits and contain only numbers.'),
+      );
     });
   });
 }

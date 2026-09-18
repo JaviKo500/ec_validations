@@ -30,14 +30,15 @@ class DniValidator {
       if (e is IdentificationException) {
         return IdentificationResult(
           isValid: false,
-          errorMessage: e.message,
-          typeCodeError: e.code,
+          messageKey: e.key,
+          messageArgs: e.args,
+          typeCodeError: e.code
         );
       }
       return IdentificationResult(
         isValid: false,
-        errorMessage: 'Invalid identification',
         typeCodeError: ErrorCode.invalidIdentification,
+        messageKey: EcMessageKey.identificationInvalid,
       );
     }
   }

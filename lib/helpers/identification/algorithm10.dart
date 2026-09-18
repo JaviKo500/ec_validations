@@ -16,7 +16,7 @@ bool algorithm10(String firstDigits, String verificationDigitString) {
   if (verificationDigit == null) {
     throw IdentificationException(
       ErrorCode.invalidVerificationDigit,
-      'Invalid verification digit: must be a number.',
+      EcMessageKey.verificationDigitNotNumber,
     );
   }
 
@@ -30,7 +30,7 @@ bool algorithm10(String firstDigits, String verificationDigitString) {
     if (digit == null) {
       throw IdentificationException(
         ErrorCode.invalidIdentification,
-        'Invalid identification: must be a number.',
+        EcMessageKey.identificationNotNumber,
       );
     }
     int result = digit * coefficient;
@@ -51,7 +51,7 @@ bool algorithm10(String firstDigits, String verificationDigitString) {
   if (verificationDigitResult != verificationDigit) {
     throw IdentificationException(
       ErrorCode.invalidVerificationDigit,
-      'Invalid verification digit.',
+      EcMessageKey.verificationDigitInvalid
     );
   }
 

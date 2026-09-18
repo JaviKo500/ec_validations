@@ -7,20 +7,18 @@ void main() {
   group('IdentificationException Tests', () {
     test('Should create exception with code and message', () {
       const errorCode = ErrorCode.invalidType;
-      const errorMessage = 'Invalid identification type';
       
-      final exception = IdentificationException(errorCode, errorMessage);
+      final exception = IdentificationException(errorCode, EcMessageKey.identificationInvalidType,);
 
       expect(exception.code, equals(errorCode));
-      expect(exception.message, equals(errorMessage));
+      expect(exception.key, equals(EcMessageKey.identificationInvalidType));
+      expect(exception.message, equals('Invalid identification type'));
     });
 
     test('Should be catchable as Exception', () {
       const errorCode = ErrorCode.invalidType;
-      const errorMessage = 'Invalid identification type';
-
       expect( () {
-        throw IdentificationException(errorCode, errorMessage);
+        throw IdentificationException(errorCode, EcMessageKey.identificationInvalidType,);
       }, throwsException);
     },);    
   });

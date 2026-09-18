@@ -12,14 +12,14 @@ void validateCodeEstablishment(String codeEstablishment) {
   if (code == null) {
     throw IdentificationException(
       ErrorCode.invalidCodeEstablishment,
-      'Invalid code establishment: must be a number.',
+      EcMessageKey.codeEstablishmentNotNumber,
     );
   }
 
   if (code <= 0) {
     throw IdentificationException(
       ErrorCode.invalidCodeEstablishment,
-      'Invalid code establishment: must be a number greater than 0.',
+      EcMessageKey.codeEstablishmentZero,
     );
   }
 }

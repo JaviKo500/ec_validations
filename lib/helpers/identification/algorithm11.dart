@@ -22,7 +22,7 @@ bool algorithm11(
   if (coefficients == null) {
     throw IdentificationException(
       ErrorCode.invalidType,
-      'Invalid identification type',
+      EcMessageKey.identificationInvalidType,
     );
   }
 
@@ -31,7 +31,7 @@ bool algorithm11(
   if (verificationDigit == null) {
     throw IdentificationException(
       ErrorCode.invalidVerificationDigit,
-      'Invalid verification digit: must be a number.',
+      EcMessageKey.verificationDigitNotNumber,
     );
   }
 
@@ -40,7 +40,7 @@ bool algorithm11(
   if (listDigits.length != coefficients.length) {
     throw IdentificationException(
       ErrorCode.invalidType,
-      'Invalid identification type',
+      EcMessageKey.identificationInvalidType,
     );
   }
 
@@ -57,7 +57,7 @@ bool algorithm11(
   if (result != verificationDigit) {
     throw IdentificationException(
       ErrorCode.invalidVerificationDigit,
-      'Invalid verification digit.',
+      EcMessageKey.verificationDigitInvalid
     );
   }
 
