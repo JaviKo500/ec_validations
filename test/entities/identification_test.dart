@@ -4,6 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ec_validations/entities/index.dart';
 
 void main() {
+  tearDown(() => EcValidationsL10n.use('en'));
+
   group('TypeIdentification Enum Tests', () {
     test('TypeIdentification should be correct values ', () {
       expect( TypeIdentification.values.length , equals(6));
@@ -36,6 +38,98 @@ void main() {
     });
   });
 
+  group('IdentificationResult localization Tests', () {
+    test('Should create an invalid result from a message key', () {
+      final result = IdentificationResult(
+        isValid: false,
+        typeCodeError: ErrorCode.invalidEmpty,
+        messageKey: EcMessageKey.identificationEmpty,
+      );
+
+      expect(result.messageKey, equals(EcMessageKey.identificationEmpty));
+      expect(result.messageArgs, isEmpty);
+      expect(result.errorMessage, equals('Identification cannot be empty'));
+    });
+
+    test('Should build the message with the arguments it carries', () {
+      final result = IdentificationResult(
+        isValid: false,
+        typeCodeError: ErrorCode.invalidLengthOrFormat,
+        messageKey: EcMessageKey.identificationLengthOrFormat,
+        messageArgs: const {'digits': 13},
+      );
+
+      expect(result.messageArgs, equals({'digits': 13}));
+      expect(result.errorMessage, contains('13'));
+    });
+
+    test('Should resolve the message with the locale in use', () {
+      final result = IdentificationResult(
+        isValid: false,
+        messageKey: EcMessageKey.identificationEmpty,
+      );
+
+      expect(result.errorMessage, equals('Identification cannot be empty'));
+
+      EcValidationsL10n.use('es');
+
+      expect(result.errorMessage, equals('La identificación no puede estar vacía'));
+    });
+
+    test('Should resolve the message in the requested locale', () {
+      final result = IdentificationResult(
+        isValid: false,
+        messageKey: EcMessageKey.identificationEmpty,
+      );
+
+      expect(result.messageIn(EcMessagesEn()), equals('Identification cannot be empty'));
+      expect(
+        result.messageIn(EcMessagesEs()),
+        equals('La identificación no puede estar vacía'),
+      );
+    });
+
+    test('Should prefer an explicit message over the key', () {
+      final result = IdentificationResult(
+        isValid: false,
+        errorMessage: 'Custom message',
+        messageKey: EcMessageKey.identificationEmpty,
+      );
+
+      expect(result.errorMessage, equals('Custom message'));
+
+      EcValidationsL10n.use('es');
+
+      expect(result.errorMessage, equals('Custom message'));
+    });
+
+    test('Should keep an explicit message out of messageIn when a key is set', () {
+      final result = IdentificationResult(
+        isValid: false,
+        errorMessage: 'Custom message',
+        messageKey: EcMessageKey.identificationEmpty,
+      );
+
+      expect(
+        result.messageIn(EcMessagesEs()),
+        equals('La identificación no puede estar vacía'),
+      );
+    });
+
+    test('Should return the explicit message from messageIn without a key', () {
+      final result = IdentificationResult(isValid: false, errorMessage: 'Custom message');
+
+      expect(result.messageIn(EcMessagesEs()), equals('Custom message'));
+    });
+
+    test('Should return null when there is neither a message nor a key', () {
+      final result = IdentificationResult(isValid: false);
+
+      expect(result.errorMessage, isNull);
+      expect(result.messageIn(EcMessagesEs()), isNull);
+    });
+  });
+
   group('ErrorCode Enum Tests', () {
     test('ErrorCode should be correct values ', () {
       expect( ErrorCode.values.length , equals(9));
@@ -60,6 +154,26 @@ void main() {
       expect(rule.messageKey, equals(EcMessageKey.identificationLengthOrFormat));
       expect(rule.args, equals({'digits': 10}));
       expect(EcValidationsL10n.messages.message(rule.messageKey, rule.args), equals(errorMessage));
+    });
+
+    test('Should translate the rule message with the locale in use', (){
+      final rule = ValidationRule.digits(13);
+
+      EcValidationsL10n.use('es');
+
+      expect(
+        EcValidationsL10n.messages.message(rule.messageKey, rule.args),
+        equals('Identificación inválida: debe tener exactamente 13 dígitos y contener solo números.'),
+      );
+    });
+
+    test('Should default to no arguments', (){
+      final rule = ValidationRule(
+        pattern: r'^\d{10}$',
+        messageKey: EcMessageKey.identificationInvalid,
+      );
+
+      expect(rule.args, isEmpty);
     });
 
     test('Should build the rule message with its own digits', (){
