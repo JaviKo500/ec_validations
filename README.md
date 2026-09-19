@@ -225,6 +225,18 @@ normalized the same way `use` normalizes its argument, so a catalog declaring
 
 ![ec_validator form_phone ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/valid_phone.png 'Ec_validator')
 
+## Roadmap
+
+Ideas being considered for future versions. Feedback and use cases are welcome
+in the [issue tracker](https://github.com/JaviKo500/ec_validations/issues).
+
+- **License plate validation** (`PlateValidator`): format, province letter and
+  service type, with the same result shape the other validators return.
+- **Province as a first-class value**: DNI and RUC identify a province by its
+  numeric code and a plate does it by letter. Exposing the province itself would
+  let the package answer which one a document belongs to, not only whether it is
+  valid.
+
 ## Running Tests
 
 To run tests, run the following command
