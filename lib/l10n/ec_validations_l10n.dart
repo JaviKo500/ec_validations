@@ -16,8 +16,12 @@ class EcValidationsL10n {
   static String _normalize( String code ) => 
     code.trim().toLowerCase().replaceAll('_', '-');
 
+  /// Registers a catalog so [use] can select it.
+  ///
+  /// The locale code is normalized like the one [use] receives, so a catalog
+  /// declaring `es_EC` is reachable as `es-EC`, `es_ec` or `ES-EC`.
   static void register( EcValidationsMessages messages) =>
-    _registry[messages.localeCode] = messages;
+    _registry[_normalize(messages.localeCode)] = messages;
 
   static bool use(String localeCode) {
     final normalized = _normalize(localeCode);

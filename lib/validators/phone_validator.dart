@@ -48,9 +48,10 @@ class PhoneValidator {
       );
     } catch (e) {
       if ( e is PhoneException ) {
+        /// The key and its arguments are kept instead of the resolved text so
+        /// the message follows the locale selected when it is read.
         return PhoneResult(
           isValid: false,
-          errorMessage: e.message,
           typeCodeError: e.code,
           messageKey: e.key,
           messageArgs: e.args,
