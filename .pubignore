@@ -1,0 +1,32 @@
+# pub uses this file INSTEAD of .gitignore when packaging, never both, so every
+# entry of .gitignore that must stay out of the archive is repeated here.
+
+# Build output and tool caches.
+build/
+.dart_tool/
+**/doc/api/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Libraries should not publish pubspec.lock, per
+# https://dart.dev/guides/libraries/private-files#pubspeclock
+/pubspec.lock
+
+# Editor and OS files.
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+.atom/
+.history
+.DS_Store
+*.log
+*.swp
+
+# Only the README links to these, by their raw.githubusercontent.com URL, so
+# shipping them would add ~1.2 MB to every download for nothing.
+screenshots/
+
+# The suite runs from the repository; it is not needed to depend on the package.
+test/
