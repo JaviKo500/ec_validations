@@ -1,7 +1,7 @@
 
 # ec_validations
 
-Validación de **cédula**, **RUC** y **números de teléfono** del Ecuador, para Dart y Flutter.
+**Validador** de **cédula**, **RUC** y **números de teléfono** del Ecuador, para Dart y Flutter.
 
 A library for validating Ecuadorian identification documents (**ID card** and **RUC**) and **phone numbers**.
 

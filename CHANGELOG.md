@@ -1,3 +1,6 @@
+## 0.1.2
+* Documentation only: no API or behavior changes.
+* Describe the package in Spanish as well as English, so it can be found by the terms its audience searches for.
 ## 0.1.1
 * Documentation only: no API or behavior changes.
 * The README is now bilingual, Spanish and English, matching the audience of the package.
