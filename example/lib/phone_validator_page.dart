@@ -31,6 +31,7 @@ class _PhoneValidatorPageState extends State<PhoneValidatorPage> {
   final _formKey = GlobalKey<FormState>();
 
   PhoneMode phoneMode = PhoneMode.any;
+  String normalizedPhone = '';
 
   final List<String> phonesAny = [
     '0991234567',
@@ -144,18 +145,26 @@ class _PhoneValidatorPageState extends State<PhoneValidatorPage> {
                       ),
                       validator: (value) {
                         final result = validate(value ?? '');
+                        if (result.isValid) {
+                          normalizedPhone = result.normalizedNumber ?? '';
+                        }
                         return result.isValid ? null : result.errorMessage;
                       },
                     ),
                     const SizedBox(height: 10),
                     _formKey.currentState?.validate() == true
-                        ? const Text(
-                          'Valid phone',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          )
+                        ? Column(
+                          children: [
+                            const Text(
+                              'Valid phone',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 20,
+                              )
+                            ),
+                            Text('Normalized phone: $normalizedPhone'),
+                          ],
                         )
                         : const SizedBox(),
                     ElevatedButton(
@@ -167,6 +176,7 @@ class _PhoneValidatorPageState extends State<PhoneValidatorPage> {
                     ),
                     TextButton(
                       onPressed: () {
+                        normalizedPhone = '';
                         _formKey.currentState?.reset();
                       },
                       child: const Text('Reset', style: TextStyle(color: Colors.purple,),),

@@ -55,6 +55,30 @@ class _DniValidatorPageState extends State<DniValidatorPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
+                  'Language',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+
+                /// Messages follow the selected locale, English by default.
+                /// A catalog of your own is added the same way:
+                /// EcValidationsL10n.register(MyMessages()).
+                Row(
+                  children: [
+                    for (final code in const ['en', 'es'])
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12, bottom: 8),
+                        child: ChoiceChip(
+                          label: Text(code.toUpperCase()),
+                          selected:
+                              EcValidationsL10n.messages.localeCode == code,
+                          onSelected: (_) => setState(() {
+                            EcValidationsL10n.use(code);
+                          }),
+                        ),
+                      ),
+                  ],
+                ),
+                const Text(
                   'Form',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
