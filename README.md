@@ -21,7 +21,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    ec_validations: '^0.0.15'
+    ec_validations: '^0.1.0'
 ```
 
 
@@ -139,6 +139,80 @@ When the number is invalid, `typeCodeError` is one of `PhoneErrorCode`:
 | `invalidFormat` | The number does not start with `09` (mobile) or `02` to `07` (landline) — `9` or `2` to `7` after `+593` — or contains non-digit characters |
 | `invalidCountryCode` | The number does not start with the Ecuador code `+593` |
 | `invalidPhone` | Unexpected error |
+
+## Localization
+
+Validation messages ship in English (default) and Spanish. Select a locale once,
+usually at startup, and every validator follows it:
+
+```dart
+import 'package:ec_validations/ec_validations.dart';
+
+void main() {
+  EcValidationsL10n.use('es');
+
+  final result = DniValidator.isValid('');
+  // result.errorMessage: 'La identificación no puede estar vacía'
+}
+```
+
+`use` returns `false` and keeps the current locale when the code is unknown, so
+it can be fed straight from the platform locale:
+
+```dart
+EcValidationsL10n.use(Localizations.localeOf(context).toLanguageTag());
+```
+
+The code is matched case-insensitively, `_` and `-` are interchangeable, and a
+region falls back to its language: `es`, `ES`, `es-EC`, `es_EC` and `es-419` all
+resolve to the Spanish catalog.
+
+Messages are resolved when `errorMessage` is read, not when the value is
+validated, so a result built before the locale changed still reports the new
+language. To read one locale without changing the selected one, use
+`messageIn`:
+
+```dart
+final result = PhoneValidator.isValid('0891234567');
+
+result.messageIn(EcMessagesEs()); // Spanish, whatever locale is selected
+```
+
+### Custom messages
+
+Implement `EcValidationsMessages` to reword a shipped locale or to add one the
+package does not ship. `EcMessageKey` lists every message the package can emit,
+and the `args` map carries the values a message interpolates, such as the
+expected number of digits:
+
+```dart
+class MyMessagesEn implements EcValidationsMessages {
+  @override
+  String get localeCode => 'en';
+
+  @override
+  String message(EcMessageKey key, [Map<String, Object?> args = const {}]) {
+    switch (key) {
+      case EcMessageKey.identificationEmpty:
+        return 'Please enter your ID number';
+      case EcMessageKey.identificationLengthOrFormat:
+        return 'It must have ${args['digits']} digits';
+      default:
+        return EcMessagesEn().message(key, args);
+    }
+  }
+}
+
+void main() {
+  EcValidationsL10n.register(MyMessagesEn());
+  EcValidationsL10n.use('en');
+}
+```
+
+Registering a locale code that is already known replaces it. The code is
+normalized the same way `use` normalizes its argument, so a catalog declaring
+`es_EC` is reachable as `es-EC` or `es-ec`, and takes precedence over the plain
+`es` catalog for those codes.
 
 #### Demo form valid DNI
 ![ec_validator form_dni ](https://raw.githubusercontent.com/JaviKo500/ec_validations/main/screenshots/valid_dni.png 'Ec_validator')

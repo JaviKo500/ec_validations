@@ -1,3 +1,9 @@
+## 0.1.0
+* Localize every validation message: EcValidationsL10n.use selects a locale, shipped in English (default) and Spanish.
+* Results and exceptions carry an EcMessageKey instead of a fixed string, so errorMessage follows the locale selected when it is read.
+* Add IdentificationResult.messageIn and PhoneResult.messageIn to read one locale without selecting it.
+* Add EcValidationsL10n.register to reword a shipped locale or add a new one.
+* Breaking: IdentificationException and PhoneException take an EcMessageKey instead of a message string.
 ## 0.0.15
 * Add phone number validation: PhoneValidator.isValid, isValidLocal and isValidInternational.
 * Phone validation supports mobile (09) and landline (02-07) numbers.
