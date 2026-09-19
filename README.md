@@ -21,7 +21,7 @@ A library for validating Ecuadorian identification documents (**ID card** and **
 
 ```yaml
 dependencies:
-    ec_validations: '^0.1.0'
+    ec_validations: '^0.1.1'
 ```
 
 ### 2. Instálalo / Install it

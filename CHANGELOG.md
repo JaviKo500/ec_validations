@@ -1,3 +1,8 @@
+## 0.1.1
+* Documentation only: no API or behavior changes.
+* The README is now bilingual, Spanish and English, matching the audience of the package.
+* Fix the README title, which named ec_validator, the demo app, instead of ec_validations.
+* Add a Roadmap section with the validations under consideration.
 ## 0.1.0
 * Localize every validation message: EcValidationsL10n.use selects a locale, shipped in English (default) and Spanish.
 * Results and exceptions carry an EcMessageKey instead of a fixed string, so errorMessage follows the locale selected when it is read.
