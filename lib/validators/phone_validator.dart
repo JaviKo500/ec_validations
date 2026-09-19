@@ -44,6 +44,7 @@ class PhoneValidator {
         normalizedNumber: validate(),
         errorMessage: null,
         typeCodeError: null,
+        messageKey: null,
       );
     } catch (e) {
       if ( e is PhoneException ) {
@@ -51,13 +52,15 @@ class PhoneValidator {
           isValid: false,
           errorMessage: e.message,
           typeCodeError: e.code,
+          messageKey: e.key,
+          messageArgs: e.args,
         );
       }
 
       return PhoneResult(
         isValid: false,
-        errorMessage: 'Invalid phone number',
         typeCodeError: PhoneErrorCode.invalidPhone,
+        messageKey: EcMessageKey.phoneInvalid,
       );
     }
   }

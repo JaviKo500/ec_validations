@@ -21,7 +21,7 @@ String validateInternationalLocalPhone(String phoneNumber) {
   if (value.isEmpty) {
     throw PhoneException(
       PhoneErrorCode.invalidEmpty,
-      'Phone number cannot be empty.'
+      EcMessageKey.phoneEmpty
     );
   }
 

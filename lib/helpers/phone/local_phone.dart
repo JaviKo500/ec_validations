@@ -18,15 +18,14 @@ String validateLocalPhone(String phoneNumber) {
   if (value.isEmpty) {
     throw PhoneException(
       PhoneErrorCode.invalidEmpty,
-      'Phone number cannot be empty.'
+      EcMessageKey.phoneEmpty,
     );
   }
 
   if (value.length != 10 && value.length != 9) {
     throw PhoneException(
       PhoneErrorCode.invalidLength,
-      'Phone number must be exactly 10 characters long for a mobile number '
-      'or 9 for a landline number.'
+      EcMessageKey.phoneLocalLength,
     );
   }
 
@@ -34,8 +33,7 @@ String validateLocalPhone(String phoneNumber) {
       !_landlinePhoneRegExp.hasMatch(value)) {
     throw PhoneException(
       PhoneErrorCode.invalidFormat,
-      'Phone number must start with 09 for a mobile number or with 02 to 07 '
-      'for a landline number.'
+      EcMessageKey.phoneLocalFormat,
     );
   }
 

@@ -14,14 +14,15 @@ String  validateInternationalPhone(String phoneNumber) {
   if (value.isEmpty) {
     throw PhoneException(
       PhoneErrorCode.invalidEmpty,
-      'Phone number cannot be empty.'
+      EcMessageKey.phoneEmpty
     );
   }
 
   if (!value.startsWith(ecCountryCode)) {
     throw PhoneException(
       PhoneErrorCode.invalidCountryCode,
-      'Phone number must start with the Ecuador country code $ecCountryCode.'
+      EcMessageKey.phoneCountryCode,
+      {'countryCode': ecCountryCode},
     );
   }
 
@@ -33,16 +34,16 @@ String  validateInternationalPhone(String phoneNumber) {
     if (e.code == PhoneErrorCode.invalidLength) {
       throw PhoneException(
         PhoneErrorCode.invalidLength,
-        'Phone number must have exactly 9 digits after $ecCountryCode for a '
-        'mobile number or 8 for a landline number.'
+        EcMessageKey.phoneInternationalLength,
+        {'countryCode': ecCountryCode},
       );
     }
 
     if (e.code == PhoneErrorCode.invalidFormat) {
       throw PhoneException(
         PhoneErrorCode.invalidFormat,
-        'Phone number must continue with 9 for a mobile number or with 2 to 7 '
-        'for a landline number after $ecCountryCode.'
+        EcMessageKey.phoneInternationalFormat,
+        {'countryCode': ecCountryCode},
       );
     }
 
