@@ -101,7 +101,7 @@ class _RucValidatorPageState extends State<RucValidatorPage> {
                           borderRadius: BorderRadius.circular(24),
                         )
                       ),
-                      value: typeIdentification,
+                      initialValue: typeIdentification,
                       items: TypeIdentification.values.where( (item) => item != TypeIdentification.dni ).map( (item) => DropdownMenuItem(
                         value: item,
                         child: Text(item.toString()),
